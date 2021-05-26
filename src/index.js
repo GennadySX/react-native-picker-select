@@ -400,9 +400,9 @@ export default class RNPickerSelect extends PureComponent {
                     testID="text_input"
                     style={[
                         Platform.OS === 'ios' ? style.inputIOS : style.inputAndroid,
-                        this.getPlaceholderStyle(),
+                        this.getPlaceholderStyle()
                     ]}
-                    value={selectedItem.inputLabel ? selectedItem.inputLabel : selectedItem.label}
+                    value={selectedItem.inputLabel ? selectedItem.inputLabel : style.inputIOS.textTransform === 'uppercase' && Platform.OS === 'ios'  ? selectedItem.label.toUpperCase() : selectedItem.label.toUpperCase() }
                     ref={this.setInputRef}
                     editable={false}
                     {...textInputProps}
