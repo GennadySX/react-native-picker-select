@@ -57,6 +57,7 @@ export default class RNPickerSelect extends PureComponent {
         // Custom Icon
         Icon: PropTypes.func,
         InputAccessoryView: PropTypes.func,
+        labelUpperCased: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -85,6 +86,7 @@ export default class RNPickerSelect extends PureComponent {
         touchableWrapperProps: {},
         Icon: null,
         InputAccessoryView: null,
+        labelUpperCased: false,
     };
 
     static handlePlaceholder({ placeholder }) {
@@ -400,9 +402,15 @@ export default class RNPickerSelect extends PureComponent {
                     testID="text_input"
                     style={[
                         Platform.OS === 'ios' ? style.inputIOS : style.inputAndroid,
-                        this.getPlaceholderStyle()
+                        this.getPlaceholderStyle(),
                     ]}
-                    value={selectedItem.inputLabel ? selectedItem.inputLabel : style.inputIOS.textTransform === 'uppercase' && Platform.OS === 'ios'  ? selectedItem.label.toUpperCase() : selectedItem.label.toUpperCase() }
+                    value={
+                        selectedItem.inputLabel
+                            ? selectedItem.inputLabel
+                            : this.props.labelUpperCased
+                            ? selectedItem.label.toUpperCase()
+                            : selectedItem.label
+                    }
                     ref={this.setInputRef}
                     editable={false}
                     {...textInputProps}
