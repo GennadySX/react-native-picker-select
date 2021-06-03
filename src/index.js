@@ -406,7 +406,7 @@ export default class RNPickerSelect extends PureComponent {
                     ]}
                     value={
                         selectedItem.inputLabel
-                            ? selectedItem.inputLabel  : this.props.labelUpperCased ? selectedItem.label.toUpperCase() : selectedItem.label
+                            ? selectedItem.inputLabel  : this.props && this.props.labelUpperCased ? selectedItem.label.toUpperCase() : selectedItem.label
                     }
                     ref={this.setInputRef}
                     editable={false}
