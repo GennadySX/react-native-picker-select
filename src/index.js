@@ -270,7 +270,7 @@ export default class RNPickerSelect extends PureComponent {
                     label={item.label}
                     value={item.value}
                     key={item.key || item.label}
-                    color={item.color}
+                    color={selectedValue === item.value || item.color ?   '#A0A3B1' : '#000000' }
                 />
             );
         });
@@ -505,7 +505,7 @@ export default class RNPickerSelect extends PureComponent {
                         selectedValue={selectedItem.value}
                         {...pickerProps}
                     >
-                        {this.renderPickerItems()}
+                        {this.renderPickerItems(selectedItem.value)}
                     </Picker>
                 </View>
             </Component>
