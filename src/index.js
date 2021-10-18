@@ -262,7 +262,8 @@ export default class RNPickerSelect extends PureComponent {
     }
 
     renderPickerItems() {
-        const { items } = this.state;
+        const { items, selectedItem } = this.state;
+        const isIOS = Platform.OS === 'ios'
 
         return items.map((item) => {
             return (
@@ -270,11 +271,12 @@ export default class RNPickerSelect extends PureComponent {
                     label={item.label}
                     value={item.value}
                     key={item.key || item.label}
-                    color={selectedValue === item.value || item.color ?   '#A0A3B1' : '#000000' }
+                    color={selectedItem?.value === item.value && !isIOS || item.color ?   '#A0A3B1' : '#000000' }
                 />
             );
         });
     }
+
 
     renderInputAccessoryView() {
         const {
